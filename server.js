@@ -13,8 +13,10 @@ const host = '0.0.0.0';
 const db = knex({
   client: "pg",
   connection: {
-    connection: process.env.PG_CONNECTION_STRING,
-    searchPath: ['knex', 'public'],
+    host: "127.0.0.1",
+    user: "postgres",
+    password: "root",
+    database: "smart-brain",
   },
 });
 const app = express();
