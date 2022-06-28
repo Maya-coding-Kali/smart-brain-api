@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const knex = require("knex");
 const { response } = require("express");
 const { user } = require("pg/lib/defaults");
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const db = knex({
   client: "pg",
   connection: {
