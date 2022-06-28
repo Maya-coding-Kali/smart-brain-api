@@ -12,12 +12,8 @@ const PORT = process.env.PORT || 3000;
 const host = '0.0.0.0';
 const db = knex({
   client: "pg",
-  connection: {
-    host: "127.0.0.1",
-    user: "postgres",
-    password: "root",
-    database: "smart-brain",
-  },
+  connection: process.env.PG_CONNECTION_STRING,
+  searchPath: ['knex', 'public'],
 });
 const app = express();
 app.use(express.json());
