@@ -9,6 +9,7 @@ const knex = require("knex");
 const { response } = require("express");
 const { user } = require("pg/lib/defaults");
 const PORT = process.env.PORT || 3000;
+const host = '0.0.0.0';
 const db = knex({
   client: "pg",
   connection: {
@@ -40,6 +41,6 @@ app.put("/image", (req, res) => {
 app.post("/imageurl", (req, res) => {
   image.handelApi(req, res);
 });
-app.listen(PORT, () => {
+app.listen(PORT,host, () => {
   console.log(`Server is running on ${PORT}`);
 });
