@@ -13,11 +13,9 @@ const host = '0.0.0.0';
 const db = knex({
   client: "pg",
   connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl:{
-      rejectUnauthorized: false,
-    }
-  }
+    connection: process.env.PG_CONNECTION_STRING,
+    searchPath: ['knex', 'public'],
+  },
 });
 const app = express();
 app.use(express.json());
