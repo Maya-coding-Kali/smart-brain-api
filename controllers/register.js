@@ -24,7 +24,7 @@ const handelRegister = (req, res, db, bcrypt) => {
               joined: new Date(),
             })
             .then((user) => {
-              res.json("this is the user i am looking for 2: " +user[0]);
+              res.json(user[0].email);
             });
         })
         .then(trx.commit)
