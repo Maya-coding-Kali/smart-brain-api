@@ -7,14 +7,15 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const knex = require("knex");
 const { response } = require("express");
-//const { user } = require("pg/lib/defaults");
+const { user } = require("pg");
 const PORT = process.env.PORT || 3000;
 const host = "0.0.0.0";
 const db = knex({
   client: "pg",
-  connection:{
   connectionString: process.env.DATABASE_URL,
-  ssl: true,}
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 const app = express();
