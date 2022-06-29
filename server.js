@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 3000;
 const host = '0.0.0.0';
 const db = knex({
   client: "pg",
-  connectionString: {
-    host:process.env.DATABASE_URL,
+  connection: {
+    connectionString:process.env.DATABASE_URL,
     ssl: true
   }
 });
