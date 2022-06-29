@@ -15,13 +15,13 @@ const db = knex({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
-cosnole.log(process.env.DATABASE_URL)
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.get("/", (req, res) => {
-  res.send("it is working");
+  res.send("it is working " + process.env.DATABASE_URL);
 });
 
 app.post("/signin", (req, res) => {
