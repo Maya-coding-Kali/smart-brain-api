@@ -4,11 +4,11 @@ const app = new Clarifai.App({
 });
 const handelApi = (req, res) => {
   app.models
-    .predict(Clarifai.CELEBRITY_MODEL, req.body.input)
+    .predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
     .then((data) => {
       res.json(data);
     })
-    .catch((err) => res.status(400).json("unable to work with API"));
+    .catch((err) => res.status(400).json("unable to work with API" + err));
 };
 const handelImage = (req, res, db) => {
   const { id } = req.body;
