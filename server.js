@@ -9,19 +9,19 @@ const knex = require("knex");
 const { response } = require("express");
 //const { user } = require("pg/lib/defaults");
 const PORT = process.env.PORT || 3000;
-const host = '0.0.0.0';
+const host = "0.0.0.0";
 const db = knex({
   client: "pg",
-  connection: {
-    connectionString:process.env.DATABASE_URL,
-    ssl: true
-  }
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
 });
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.get("/", (req, res) => {res.send('it is working')});
+app.get("/", (req, res) => {
+  res.send("it is working");
+});
 
 app.post("/signin", (req, res) => {
   signIn.handelSignIn(req, res, db, bcrypt);
@@ -38,6 +38,6 @@ app.put("/image", (req, res) => {
 app.post("/imageurl", (req, res) => {
   image.handelApi(req, res);
 });
-app.listen(PORT,host, () => {
+app.listen(PORT, host, () => {
   console.log(`Server is running on ${PORT}`);
 });
