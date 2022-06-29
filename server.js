@@ -18,11 +18,14 @@ const db = knex({
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ allowedHeaders: ['sessionId', 'Content-Type'],
-exposedHeaders: ['sessionId'],
-origin: '*',
-methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-preflightContinue: false}));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 app.get("/", (req, res) => {res.send('it is working')});
 
