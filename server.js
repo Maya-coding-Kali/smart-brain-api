@@ -18,14 +18,7 @@ const db = knex({
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(cors());
 
 app.get("/", (req, res) => {res.send('it is working')});
 
@@ -33,10 +26,6 @@ app.post("/signin", (req, res) => {
   signIn.handelSignIn(req, res, db, bcrypt);
 });
 app.post("/register", (req, res) => {
-  res.set({
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-});
   register.handelRegister(req, res, db, bcrypt);
 });
 app.get("/profile/:id", (req, res) => {
