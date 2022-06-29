@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.get("/", (req, res) => {
-  res.send("it is working " + process.env.DATABASE_URL);
+  res.send("it is working");
 });
 
 app.post("/signin", (req, res) => {

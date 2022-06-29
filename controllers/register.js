@@ -16,7 +16,7 @@ const handelRegister = (req, res, db, bcrypt) => {
         .into("login")
         .returning("email")
         .then((loginEmail) => {
-          return trx("users")
+          return trx("users", console.log("this is the users i am looking for 1"))
             .returning("*")
             .insert({
               email: loginEmail[0].email,
@@ -24,7 +24,7 @@ const handelRegister = (req, res, db, bcrypt) => {
               joined: new Date(),
             })
             .then((user) => {
-              res.json(user[0]);
+              res.json("this is the user i am looking for 2: " +user[0]);
             });
         })
         .then(trx.commit)
