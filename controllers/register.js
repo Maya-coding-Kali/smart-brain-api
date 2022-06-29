@@ -30,7 +30,7 @@ const handelRegister = (req, res, db, bcrypt) => {
         .then(trx.commit)
         .catch(trx.rollback);
     }).catch((err) => {
-      res.status(400).json("Unable to register");
+      res.status(400).json("Unable to register" + email + " " + name +" " + password);
     });
 }
 module.exports = {handelRegister: handelRegister}
