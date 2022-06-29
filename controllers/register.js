@@ -2,7 +2,7 @@ const handelRegister = (req, res, db, bcrypt) => {
     const { email, name, password } = req.body;
     console.log(name, email,  password)
     if (!email || !name || !password) {
-    return    res.status(400).json("incorrect form submission " + email + " " + name +" " + password)
+    return    res.status(400).json("incorrect form submission ")
     }
     const saltRounds = 10;
     const salt = bcrypt.genSaltSync(saltRounds);
@@ -16,7 +16,7 @@ const handelRegister = (req, res, db, bcrypt) => {
         .into("login")
         .returning("email")
         .then((loginEmail) => {
-          return trx("users", console.log("this is the users i am looking for 1"))
+          return trx("users")
             .returning("*")
             .insert({
               email: loginEmail[0].email,
@@ -30,7 +30,7 @@ const handelRegister = (req, res, db, bcrypt) => {
         .then(trx.commit)
         .catch(trx.rollback);
     }).catch((err) => {
-      res.status(400).json("Unable to register" + email + " " + name +" " + password);
+      res.status(400).json("Unable to register");
     });
 }
 module.exports = {handelRegister: handelRegister}
