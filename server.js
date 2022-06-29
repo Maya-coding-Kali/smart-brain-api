@@ -9,48 +9,37 @@ const knex = require("knex");
 const { response } = require("express");
 //const { user } = require("pg/lib/defaults");
 const PORT = process.env.PORT || 3000;
-const host = "0.0.0.0";
+const host = '0.0.0.0';
 const db = knex({
   client: "pg",
   connection: {
-    /*  process.env.PG_CONNECTION_STRING,
-  searchPath: ['knex', 'public'], */
-    host: "postgresql-cubed-75033",
-    user: "maya",
-    password: "",
-    database: "smart-brain",
-  },
+    host:process.env.DATABASE_URL,
+    ssl: true
+  }
 });
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use((req, res, next) => {
+app.use( (req, res, next) => {
+
   // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   // Request methods you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
   // Request headers you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
-  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader('Access-Control-Allow-Credentials', true);
 
   // Pass to next layer of middleware
   next();
 });
-app.get("/", (req, res) => {
-  res.send("it is working");
-});
+app.get("/", (req, res) => {res.send('it is working')});
 
 app.post("/signin", (req, res) => {
   signIn.handelSignIn(req, res, db, bcrypt);
@@ -67,6 +56,6 @@ app.put("/image", (req, res) => {
 app.post("/imageurl", (req, res) => {
   image.handelApi(req, res);
 });
-app.listen(PORT, host, () => {
+app.listen(PORT,host, () => {
   console.log(`Server is running on ${PORT}`);
 });
