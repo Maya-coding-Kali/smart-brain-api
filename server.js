@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get("/", (req, res) => {});
+app.get("/", (req, res) => {res.send('it is working')});
 
 app.post("/signin", (req, res) => {
   signIn.handelSignIn(req, res, db, bcrypt);
