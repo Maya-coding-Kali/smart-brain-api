@@ -30,6 +30,10 @@ app.post("/signin", (req, res) => {
   signIn.handelSignIn(req, res, db, bcrypt);
 });
 app.post("/register", (req, res) => {
+  res.set({
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+});
   register.handelRegister(req, res, db, bcrypt);
 });
 app.get("/profile/:id", (req, res) => {
