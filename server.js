@@ -18,7 +18,7 @@ const db = knex({
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({origin: 'https://git.heroku.com/morning-savannah-82889.git:3000'}));
 
 app.get("/", (req, res) => {res.send('it is working')});
 
