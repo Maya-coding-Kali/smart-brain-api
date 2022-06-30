@@ -13,7 +13,7 @@ const handelApi = (req, res) => {
 const handelImage = (req, res, db) => {
   const { id } = req.body;
   db("users")
-    .where("userid", "=", id)
+    .where("id", "=", id)
     .increment("entries", 1)
     .returning("entries")
     .then((entries) => {
