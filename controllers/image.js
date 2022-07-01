@@ -4,7 +4,7 @@ const app = new Clarifai.App({
 });
 const handelApi = (req, res) => {
   app.models
-    .predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
+    .predict(Clarifai.CELEBRITY_MODEL, req.body.input)
     .then((data) => {
       res.json(data);
     })
